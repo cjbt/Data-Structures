@@ -73,13 +73,15 @@ class DoublyLinkedList:
         if not self.head:
             return None
         elif self.head.next is None:
-            return_value = self.head
+            removed_node = self.head
             self.head = None
             self.tail = None
-            return return_value
+            return removed_node
         else:
+            removed_node = self.head
             self.head = self.head.next
             self.head.prev = None
+            return removed_node
 
     """Wraps the given value in a ListNode and inserts it 
   as the new tail of the list. Don't forget to handle 
