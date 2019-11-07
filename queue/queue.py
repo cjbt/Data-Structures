@@ -6,13 +6,14 @@ class Queue:
         self.size = 0
         # what data structure should we
         # use to store queue elements?
-        self.storage = doubly_linked_list
+        queue_store = doubly_linked_list.DoublyLinkedList()
+        self.storage = queue_store
 
     def enqueue(self, item):
-        pass
+        return self.storage.add_to_head(item)
 
     def dequeue(self):
-        pass
+        return self.storage.remove_from_tail()
 
     def len(self):
-        pass
+        return len(self.storage)
