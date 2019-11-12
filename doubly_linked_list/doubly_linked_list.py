@@ -95,10 +95,7 @@ class DoublyLinkedList:
     Returns the value of the removed Node."""
 
     def remove_from_tail(self):
-
         removed_node_value = self.tail.value
-        if self.tail is None:
-            removed_node_value = None
         self.delete(self.tail)
         return removed_node_value
 
@@ -124,26 +121,14 @@ class DoublyLinkedList:
     the node was the head or the tail"""
 
     def delete(self, node):
-        # self.length -= 1
-        # if self.head is self.tail:
-        #     self.head = None
-        #     self.tail = None
-        # if node is self.head:
-        #     self.head = node.next
-        #     node.delete()
-        # if node is self.tail:
-        #     self.tail = node.prev
-        #     node.delete()
-        # else:
-        #     node.delete()
         self.length -= 1
         if self.head is self.tail:
             self.head = None
             self.tail = None
-        elif self.head is node:
+        if node is self.head:
             self.head = node.next
             node.delete()
-        elif self.tail is node:
+        if node is self.tail:
             self.tail = node.prev
             node.delete()
         else:

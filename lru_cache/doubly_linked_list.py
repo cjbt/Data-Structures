@@ -49,25 +49,76 @@ class DoublyLinkedList:
         return self.length
 
     def add_to_head(self, value):
-        pass
+        new_node = ListNode(value)
+        self.length += 1
+        if not self.head:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            new_node.next = self.head
+            self.head.next = new_node
+            self.head = new_node
 
     def remove_from_head(self):
-        pass
+        removed_node_value = self.head.value
+        if self.head is self.tail:
+            self.head = None
+            self.tail = None
+        self.delete(self.head)
+        return removed_node_value
+        
 
     def add_to_tail(self, value):
-        pass
+        self.length += 1
+        new_node = ListNode(value)
+        if not self.tail:
+            self.tail = new_node
+            self.head = new_node
+        else:
+            new_node.prev = self.tail
+            self.tail.next = new_node
+            self.tal = new_node
 
     def remove_from_tail(self):
-        pass
+        removed_node_value = self.tail
+        if self.head is self.tail:
+            self.head = None
+            self.tail = None
+        self.delete(self.tail)
+        return removed_node_value
 
     def move_to_front(self, node):
-        pass
+        if node is self.head:
+            return
+        self.delete(node)
+        self.add_to_head(node.value)
 
     def move_to_end(self, node):
-        pass
+        if node is self.tail:
+            return
+        self.delete(node)
+        self.add_to_tail(node.value)
 
     def delete(self, node):
-        pass
+        self.length -= 1
+        if self.head is self.tail:
+            self.head = None
+            self.tail = None
+        elif node is self.head:
+            self.head = node.next
+            node.delete()
+        elif node is self.tail:
+            self.tail = node.prev
+            node.delete()
+        else:
+            node.delete()
+
 
     def get_max(self):
-        pass
+        current = self.head
+        max_value = current.value
+        while current:
+            if current.value > max_value:
+                max_value = current.value
+            current = current.next
+        return max_value
